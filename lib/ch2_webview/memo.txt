@@ -8,5 +8,7 @@
 1.  JS 사용 설정을 해주어야 유튜브 링크를 실행할 수 있다
 2. manifest 부분에 <uses-permission android:name="android.permission.INTERNET"/>   안드로이드에서 webview를 열기 위해선 반드시 권한이 필요하다
 3. application 부분에 android:usesCleartextTraffic="true">  이렇게 해주어야 http도 열기 가능하다
+4. Nullable 객체가 있으면 생성자에 const를 제외시킨다.
+
 
 

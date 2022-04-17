@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class webViewScreen extends StatelessWidget {
-  WebViewController? controller;
+  WebViewController? controller; // Nullable 객체가 있으니 생성자에 const를 제외
   final homeUrl = 'https://github.com/kmj980521';
   webViewScreen({Key? key}) : super(key: key);
 
@@ -35,3 +35,4 @@ class webViewScreen extends StatelessWidget {
     );
   }
 }
+
