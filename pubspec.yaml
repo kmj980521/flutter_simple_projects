@@ -47,6 +47,7 @@ flutter:
 
   assets:
     - asset/img/
+    - asset/img/ch4/
 
   fonts:
     - family: parisienne
