@@ -1,0 +1,57 @@
+1. video_player 플러그인 사용
+2. image_picker 플러그인 사용
+3. Stack 위젯 사용
+4. AspectRatio 위젯 사용
+
+5. Container의 BoxDecoration()을 주고 그 안에 gradient로 효과를 줄 수 있다.
+ ㄴ LinearGradient -> 시작부터 끝부터 일괄적으로 색이 바뀜
+   ㄴ begin -> 어디서부터 시작을 할지. Alignment.center, Alignment.start와 같이 Alignment를 사용한다
+   ㄴ end -> 어디까지 할지. Alignment.bottomcenter
+   ㄴ colors -> 색상들을 리스트 형태로 준다
+ ㄴ RadialGradient -> 가운데서부터 동그랗게 퍼짐짐
+
+6. 여러 개의 글자들의 스타일이 비슷하고 특정 부분만 다르다면, style을 미리 선언하고, 후 copyWith(  파라미터 )를 사용한다
+textStyle.copyWith( fontWeight: FontWeight.w700,)
+
+
+# Image_picker
+1. final video = await ImagePicker().pickVideo(
+           source: ImageSource.gallery,
+       );
+ ㄴ 반드시 source를 주어야 하고, await로 값을 받아온다
+
+2. source로 받은 파일은 Image_picker에서 제공하는 'XFile' 클래스에 정보를 저장한다
+3. 실제 Controller를 만들 때에는 Image_picker에서만 사용하는 XFile 타입을 플러터에서 사용하는 File 타입으로 바꿔줘야 한다
+4. -> File은 html과 dart:io 2가지가 있는데, dart:io를 불러준다.
+5. dart:io의 File에는 path를 받을 수 있는데 File(widget.video.path)으로 XFile로 받아온 video의 path를 넣어준다
+
+
+# 추가 사항
+1. AspectRatio() 위젯으로 화면에 보일 비율을 조절한다
+2. Stack 안에서 Positioned() 위젯을 사용함으로써 Stack 내부에서 위치를 조정한다. right, left,... 옵션을 주며, right : 0 -> 오른쪽부터 0 픽셀 이동하라 즉, 오른쪽으로 이동하라.
+ ㄴ Positioned() 위젯을 사용하여 Slider()의 위치를 left, bottom, right를 0을 주어 늘어난 것처럼 해줄 수 있다
+3. currentPosition.inSeconds.toString().padLeft(2,'0')로 글자가 비었을 때 특정 패딩 글자를 넣어줄 수 있다
+4. 만약 새로운 영상을 골랐다면? oldWidget에서 컨트롤러를 삭제하고 새로운 컨트롤러를 만든다
+   ㄴ Stateful 위젯에서 파라미터만 변경이 되었다면?
+     -> didUpdateWidget(covariant CustomVideoPlayer oldWidget)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

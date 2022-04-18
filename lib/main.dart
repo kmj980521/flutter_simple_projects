@@ -6,11 +6,12 @@ import 'ch2_webview/webView.dart';
 import 'ch3_picture_frame/pictureFrame.dart';
 import 'ch4_U&I/datePicker.dart';
 import 'ch5_random_number/screen/randomNumber.dart';
+import 'ch6_video_player/screen/videoPlayer.dart';
 
 void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: RandomNumber(),
+    home: VideoPlayer(),
   ));
 }
 
