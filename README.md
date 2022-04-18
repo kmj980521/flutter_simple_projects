@@ -45,7 +45,8 @@
 
 ## ch-07
 - Google Map
-
+- Google Map 플러그인 사용
+- Geolocator 플러그인 
 
 A new Flutter project.
 
