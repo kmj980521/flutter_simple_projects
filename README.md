@@ -30,6 +30,24 @@
 - initState() 사용
 - Slider 사용
 
+## ch-06
+- VideoPlayer 
+- video_player 플러그인 사용
+- ViedoController 사용
+- image_picker 플러그인 사용 (XFile)
+- Stack 위젯 사용
+- AspectRatio 위젯 사용
+- Positioned 위젯 사용 
+- File 사용 
+
+
+- initState(), didUpdateWidget() 사용
+
+## ch-07
+- Google Map
+- Google Map 플러그인 사용
+- Geolocator 플러그인 
+
 A new Flutter project.
 
 
