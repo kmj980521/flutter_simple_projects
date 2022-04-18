@@ -1,0 +1,54 @@
+1. latitude - 위도, longitude - 경도
+
+2, Google Map의 mapType 프로퍼티
+ ㄴ hybrid : 위성지도
+ ㄴ normal : 일반적으로 많이 보는 지도
+ ㄴ satellite : 위성지도
+ ㄴ terrain : 고도가 표현돼서 보임
+
+3. 권한 관련은 async
+ 1) final isLocationEnabled = await Geolocator.isLocationServiceEnabled();  -> 위치 권한 확인
+ 2) LocationPermission checkedPermission = await Geolocator.checkPermission(); //-> 현재 앱이 갖고 있는 권한을 얻음
+
+ ㄴ denied  - 다시 권한 요청을 가능.
+ ㄴ deniedForever  - 다시는 현재 앱에서 권한을 요청할 수 없다. 각자 앱 유저가 권한을 열어줘야 한다..
+ ㄴ whileInUse - 앱을 사용 중에만 권한을 허용한다
+ ㄴ always - 항상 허용한다
+
+4. FutureBuilder
+ ㄴ future : Future를 return 하는 함수 작성 가능. 함수의 상태가 변경이 된다면 Builder를 다시 실행해서 화면을 새로 그려줌
+ ㄴ AsyncSnapshot : future 함수로 실행된 return 값을 받아온다
+    ㄴ ConnectionState
+       ㄴ none :  Future 파라미터를 사용하지 않을 때 none이 됨
+       ㄴ waiting : Future가 로딩 중일 때
+       ㄴ done : Future 함수가 완료 되었을 때때
+
+5. GoogleMap
+ - Circle
+   ㄴ CircleId : String 값을 주어 서로 구분을 한다. 키 값
+   ㄴ 같은 id를 주면 같은 원이라 인식한다.
+   ㄴ center : 위치
+   ㄴ radius : 원 크기
+
+ - markers
+   ㄴ Circle과 비슷.
+   ㄴ 마커를 생성하고, 이 또한 Set으로 값을 선언한다.
+   ㄴ position : 위치
+
+ - onMapCreated
+   ㄴ Map이 생성됐을 때 실행할 메서드
+     ㄴ 이 안에서 MapController를 생성할 수도 있다.
+
+- mapController!.animateCamera(CameraUpdate.newLatLng( LatLng()) ) // Camera 위치를 새로운 위치로 움직인다.
+- final location = await Geolocator.getCurrentPosition();   // 현재 위치 정보를 한 번만 받아온다.
+
+6. StreamBuilder
+Geolocator.getPositionStream(), - Geolocator 내부에 실시간으로 위치를 받는 스트림을 생성한다
+
+7. Dialog
+- showDialog()의 context를 AlertDialog()로 만든다
+ - AlertDialog
+   ㄴ title : 제목
+   ㄴ content : 내용
+   ㄴ actions : 취소, 확인 버튼
+

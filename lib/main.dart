@@ -7,11 +7,12 @@ import 'ch3_picture_frame/pictureFrame.dart';
 import 'ch4_U&I/datePicker.dart';
 import 'ch5_random_number/screen/randomNumber.dart';
 import 'ch6_video_player/screen/videoPlayer.dart';
+import 'ch7_googleMap/screen/googleMap.dart';
 
 void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: VideoPlayer(),
+    home: MapGoogle(),
   ));
 }
 
