@@ -16,12 +16,56 @@ Slider(
 # 추가 사항
 1. constant로 색상들을 관리한다
 2. children: [123,456,789,].asMap().entries() -> 특정 Row의 정보도 알 수 있다
-3. Navigator.of(context).push(
-              MaterialPageRoute(builder: (BuildContext context){
-                return SettingsScreen();
-              })
-            );
-4. initState()로 초기 설정을 해줄 수가 있다
+3. initState()로 초기 설정을 해줄 수가 있다
+
+
+## 각종 버튼
+1. ElevatedButton
+ ㄴ - primary : 메인 칼라
+ ㄴ - onPrimary : 글자 및 애니메이션 칼라
+ ㄴ - shadowColor : 그림자 칼라
+ ㄴ - elevation : 입체감의 높이
+ ㄴ - padding : 글자에 주는 패딩딩
+ ㄴ - textStyle : 글자 스타일
+ ㄴ - side : BorderSide()  -> 박스 테두리
+
+2. OutlinedButton
+ ㄴ - primary : 글자 및 눌렀을 때 애니메이션 칼라가 변경
+ ㄴ - backgroundColor : 배경
+
+3. TextButton
+ ㄴ - ElevatedButton과 동일
+
+
+4. style : ButtonStyle()
+ - MaterialStateProperty.all -> 모든 상태
+ ㄴ 프로퍼티 : MaterialStateProperty.resolveWith(  // 특정 상태에 대해서 설정
+                    Set<MaterialState> states){
+                        if(states.contains(MaterialState.pressed)){
+                           return Colors.white; // 만약 눌렀다는 상태가 있다면 흰색으로 보이게한다
+                        }
+
+                        MaterialState.
+
+                    }
+
+ ㄴ hovered - 호버링 상태 (마우스 커서를 올려놓은 상태)
+ ㄴ focused - 포커스 됐을 때 (텍스트 필드)
+ ㄴ pressed - 눌렸을 때
+ ㄴ dragged - 드래그 됐을 때
+ ㄴ selected - 선택 됐을 때 (체크박스, 라디오 버튼)
+ ㄴ scrollUnder - 다른 컴포넌트 밑으로 스크롤링이 됐을 때
+ ㄴ disabled - 비화설화 됐을 때
+ ㄴ error - 에러 상태 (텍스트 필드에서 주로 사용)
+
+
+
+
+
+
+
+
+
 
 
 

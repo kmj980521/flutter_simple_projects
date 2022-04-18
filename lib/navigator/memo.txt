@@ -1,0 +1,15 @@
+## Navigator
+1. Navigator.of(context).push(
+              MaterialPageRoute(builder: (BuildContext context){
+                return SettingsScreen();
+              })
+            );
+2. MaterialPageRoute에서 settings 라는 프로퍼티에 RouteSettings(arguments: 값)로 argument를 전달할 수 있다
+3. 받는 Page에서는 ModalRoute.of(context)!.settings.arguments -> 해당 페이지에서 위젯트리에서 가장 가까운 값을 가져온다
+4. 처음 MaterialApp에서 routes 프로퍼티에 라우트를 미리 작성할 수 있다.  만약 routes를 사용하면 initialRoute를 사용한다
+ex) '/' : (context) => HomeScreen(), 메인 페이지로 이동.
+   - '/one' : (context) => RouteOneScreen(),
+5. 또한, pussNamed에는 arguments 파라미터가 존재해 값을 전달할 수 있다
+6. pushReplacement : 해당 화면만 pop하고 이동한다
+7. pushAndRemoveUntil : 스크린 stack에 있는 페이지를 모두 삭제하고 이동한다. 가운데 프로퍼티를 false로 하면 모두 삭제.
+조건식을 작성(route.settings.name=='/' -> 라우트 네임이 '/'인 페이지를 남기고 모두 삭제
