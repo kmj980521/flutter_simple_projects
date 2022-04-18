@@ -1,4 +1,4 @@
-## Navigator
+## Navigator - push
 1. Navigator.of(context).push(
               MaterialPageRoute(builder: (BuildContext context){
                 return SettingsScreen();
@@ -13,3 +13,23 @@ ex) '/' : (context) => HomeScreen(), 메인 페이지로 이동.
 6. pushReplacement : 해당 화면만 pop하고 이동한다
 7. pushAndRemoveUntil : 스크린 stack에 있는 페이지를 모두 삭제하고 이동한다. 가운데 프로퍼티를 false로 하면 모두 삭제.
 조건식을 작성(route.settings.name=='/' -> 라우트 네임이 '/'인 페이지를 남기고 모두 삭제
+
+
+## Navigator - pop
+1. WillPopScope(
+         onWillPop: () async {
+           // true - pop 가능
+           // false - pop 불가능
+           // 작업실행
+           final canPop = Navigator.of(context).canPop();
+
+           return canPop;
+         },
+2. maybePop() : 라우트 스택 안에 페이지가 있는지 판별. pop을 해도 되는지 판별하고 가능하다면 pop
+
+- WillPopScope 위젯 사용
+
+
+
+
+
