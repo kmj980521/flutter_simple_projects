@@ -44,7 +44,7 @@
 
 6. StreamBuilder
 Geolocator.getPositionStream(), - Geolocator 내부에 실시간으로 위치를 받는 스트림을 생성한다
-
+- 스트림으로 값을 받아올 때마다 새롭게 build 한다
 7. Dialog
 - showDialog()의 context를 AlertDialog()로 만든다
  - AlertDialog
