@@ -1,0 +1,28 @@
+
+- FutureBuilder -
+1. Snapshot의 State
+ -connectionState
+  ㄴ snapshot이 없으면 ConnectionState none이 나온다.
+  ㄴ future 함수를 넣어주면 ConnectionState waiting이 나온다.
+  ㄴ 데이터를 받으면 ConnectionState done이 나온다
+ -Data
+  ㄴ snapshot의 데이터
+ -Error
+  ㄴ 현재 에러 상태
+
+
+2. builder를 다시 실행하는 상황은 snapshot의 값이 바뀔 때도 그렇고, setState()를 사용해 build가 실행되어도 다시 실행된다.
+-> 새롭게 FutureBuilder가 실행되기 전에 기존의 값을 저장하는 '캐싱'이 있다.
+--> !snapshot.hasData  : snapshot 데이터가 없을 때 즉, 한 번도 로딩을 안 했을 때 CircularProgressIndicator 위젯을 보여준다
+
+
+- StreamBuilder -
+1. Snapshot의 State -> FutureBuilder와 비슷슷
+   - stream이 끝나지 않았을 때 ConnectionState는 active 이다.
+
+2. StreamBuilder는 stream dispose()를 자동으로 처리해준다
+
+
+
+
+
