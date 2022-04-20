@@ -156,3 +156,16 @@ void main() async{
 
 
 ### 7. TextField (글자 인풋받기)
+
+### 8. IntrinsicHeight 위젯
+
+- Row를 IntrinsicHeight로 감싸고, crossAxisAlignment를 stretch 하면 Row 내에서 가장 높은 위젯이 차지하고 있는 높이 만큼 stretch를 할 수 있다.
+
+
+### 9. ListView 위젯
+- itemCount : 그릴 아이템 수
+- itemBuilder : (context, index) { return 위젯 }
+- 봐야하는 인덱스까지 scrolling을 하고난 후에 다른 아이템을 보려고 할 때 위젯을 그린다. --> 메모리 관리에 유리하다
+
+  - LiseView.separated() 위젯
+   - 일반 ListView.builder와 같고, separatorBuilder : --> 한 위젯을 그리고나서 또 다른 위젯을 그릴 때. 즉, 위젯과 위젯 사이에 무언가를 그릴 때 사용
