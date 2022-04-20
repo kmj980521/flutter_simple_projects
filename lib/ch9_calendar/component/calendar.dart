@@ -2,30 +2,37 @@ import 'package:code_factory/ch9_calendar/constant/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-class Calendar extends StatefulWidget {
-  const Calendar({Key? key}) : super(key: key);
 
-  @override
-  State<Calendar> createState() => _CalendarState();
-}
 
-class _CalendarState extends State<Calendar> {
-  final defaultBoxDeco = BoxDecoration(
-    borderRadius: BorderRadius.circular(6.0),
-    color: Colors.grey[200],
-  );
+class Calendar extends StatelessWidget{
+  final DateTime? selectedDay;
+  final DateTime focusedDay;
+  final OnDaySelected? onDaySelected;
 
-  final defaultTextStyle = TextStyle(
-    color: Colors.grey[600],
-    fontWeight: FontWeight.w700,
-  );
-  DateTime? selectedDay;
+  const Calendar({
+    required this.selectedDay,
+    required this.focusedDay,
+    required this.onDaySelected,
+    Key? key}) : super(key: key);
+
+
+
 
   @override
   Widget build(BuildContext context) {
+    final defaultBoxDeco = BoxDecoration(
+      borderRadius: BorderRadius.circular(6.0),
+      color: Colors.grey[200],
+    );
+
+    final defaultTextStyle = TextStyle(
+      color: Colors.grey[600],
+      fontWeight: FontWeight.w700,
+    );
     return SafeArea(
       child: TableCalendar(
-        focusedDay: DateTime.now(),
+        locale: 'ko_KR',
+        focusedDay: focusedDay,
         // 몇 월을 보여줘야 하는지
         firstDay: DateTime(1800),
         lastDay: DateTime(3000),
@@ -53,12 +60,11 @@ class _CalendarState extends State<Calendar> {
           selectedTextStyle: defaultTextStyle.copyWith(
             color: PRIMARY_COLOR,
           ),
+          outsideDecoration: BoxDecoration(
+            shape: BoxShape.rectangle,
+          ),
         ),
-        onDaySelected: (DateTime selectedDay, DateTime foucusedDay) {
-          setState(() {
-            this.selectedDay = selectedDay;
-          });
-        },
+        onDaySelected: onDaySelected,
         selectedDayPredicate: (DateTime date) {
           if (selectedDay == null) {
             return false;

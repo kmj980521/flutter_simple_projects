@@ -1,20 +1,33 @@
+주의 사항
+
+1. intl 패키지는 main 코드에서    import 'package:intl/date_symbol_data_local.dart';   를 한다.
+-  그 후 언어 패키지를 받아오기 위해, await initializeDateFormatting();을 실행하고 main을 async로 바꿔준다.
+-  Flutter가 runApp을 하기 전에 코드가 존재한다면 첫 코드에 WidgetsFlutterBinding.ensureInitialized(); 코드를 실행한다
 
 
+2. Row가 Column 안에 있을 때 crossAxisAlignment를 stretch를 주면 무한히 늘어난다.(언제까지 늘어나야 할지 모르기 때문)
 
 
+3. IntrinsicHeight() 위젯.
+-> 다른 childeren 위젯들의 최대 높이를 기준으로 다른 위젯도 위치시킬 수 있다
+--> Row를 IntrinsicHeight로 감싸고, crossAxisAlignment를 stretch 하면 Row 내에서 가장 높은 위젯이 차지하고 있는 높이 만큼 stretch를 할 수 있다.
+
+4. ListView.builder() 위젯
+  ㄴ itemCount : 그릴 아이템 수
+  ㄴ itemBuilder : (context, index) { return 위젯 }
+  ㄴ 봐야하는 인덱스까지 scrolling을 하고난 후에 다른 아이템을 보려고 할 때 위젯을 그린다. --> 메모리 관리에 유리하다
+
+  ㄴLiseView.separated() 위젯
+    ㄴ 일반 ListView.builder와 같고, separatorBuilder : --> 한 위젯을 그리고나서 또 다른 위젯을 그릴 때. 즉, 위젯과 위젯 사이에 무언가를 그릴 때 사용
 
 
+5. showModalBottomSheet() -> 바텀시트를 보여준다
 
+6. TextField()
+-> 키보드 기능을 사용했을 때, 키보드 높이만큼의 Padding을 밑에다 추가해줘야 한다.
 
-
-
-
-
-
-
-
-
-
+7. Wrap() 위젯
+-> Row로 했을 때는 overflow가 날 수 있으니 자동으로 줄바꿈 mapping을 해준다
 
 
 
