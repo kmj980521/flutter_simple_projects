@@ -157,6 +157,34 @@ void main() async{
 
 ### 7. TextField (글자 인풋받기)
 
+- 키보드 입력시 시스템적 UI로 가려진 사이즈 구하기 
+```dart
+
+final bottomInset = MediaQuery.of(context).viewInsets.bottom;
+
+return  Container(
+      color: Colors.white,
+      height: MediaQuery.of(context).size.height /2 + bottomInset,
+      child: Padding(
+        padding:  EdgeInsets.only(bottom: bottomInset),
+        child: Column(
+          children: [
+            TextField(),
+          ],
+        ),
+      ),
+    );
+
+```
+
+- `isScrollControlled: true,` : BottomSheet의 기본 높이는 media height의 절반이기 때문에 이 값을 BottomSheet의 파라미터를 true로 해서 끝까지 올라오게 한다
+
+- `keyboardType: TextInputType.number` : TextField의 타입을 지정
+
+
+- `FocusScope.of(context).requestFocus(FocusNode());` : 특정 sheet를 GestureDectector로 감싸고, 이 코드를 작성하면 특정 Focus를 벗어날 때 자동으로 키보드를 닫을 수 있다
+- `inputFormatters: [ FilteringTextInputFormatter.digitsOnly, ],` : 키보드 입력도 숫자만 가능하게 한다 
+           
 ### 8. IntrinsicHeight 위젯
 
 - Row를 IntrinsicHeight로 감싸고, crossAxisAlignment를 stretch 하면 Row 내에서 가장 높은 위젯이 차지하고 있는 높이 만큼 stretch를 할 수 있다.
@@ -168,4 +196,12 @@ void main() async{
 - 봐야하는 인덱스까지 scrolling을 하고난 후에 다른 아이템을 보려고 할 때 위젯을 그린다. --> 메모리 관리에 유리하다
 
   - LiseView.separated() 위젯
-   - 일반 ListView.builder와 같고, separatorBuilder : --> 한 위젯을 그리고나서 또 다른 위젯을 그릴 때. 즉, 위젯과 위젯 사이에 무언가를 그릴 때 사용
+    - 일반 ListView.builder와 같고, separatorBuilder : --> 한 위젯을 그리고나서 또 다른 위젯을 그릴 때. 즉, 위젯과 위젯 사이에 무언가를 그릴 때 사용
+
+### 10. showModalBottomSheet()
+ - BottomeSheet를 보여준다
+
+### 11. Wrap 위젯
+- Row로 했을 때는 overflow가 날 수 있으니 자동으로 줄바꿈 mapping을 해준다
+- spacing : 각각 child 사이에 양 옆으로 간격을 준다 
+- runSpacing : 각각 child 위아래로 간격을 준다 
