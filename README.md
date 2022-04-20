@@ -1,19 +1,19 @@
 
 
-## ch-01
-- Splash Screen 
+## ch-01 Splash Screen 
+
 ### 1. CircularProgressIndicator 사용
 
 -----
 
-## ch-02
-- Webview 
+## ch-02 Webview 
+ 
 ### 1. Webview 위젯 사용 
 
 -----
 
-## ch-03
-- PictureFrame
+## ch-03 PictureFrame
+ 
 ### 1. Timer 사용
 ### 2. PageView 사용
 ### 3. ThemeData 사용
@@ -21,8 +21,8 @@
 
 -----
 
-## ch-04
-- DatePicker
+## ch-04 DatePicker
+
 ### 1. Align 사용 
 ### 2. DateTime 사용
 ### 3. CupertinoDatePicker 사용
@@ -30,8 +30,8 @@
 
 -----
 
-## ch-05
-- RandomNumbers
+## ch-05 RandomNumbers
+ 
 ### 1. Functional Programming 기법 사용 
 ### 2. Navigator로 값 주고 받기 
 ### 3. ElevatedButton 사용
@@ -41,8 +41,8 @@
 -----
 
 
-## ch-06
-- VideoPlayer 
+## ch-06 VideoPlayer 
+ 
 ### 1. video_player 플러그인 사용
 ### 2. ViedoController 사용
 ### 3. image_picker 플러그인 사용 (XFile)
@@ -57,16 +57,14 @@
 
 -----
 
-## ch-07
-- Google Map
-   - CameraPosition() 클래스 : 현재 보고 있는 카메라의 위치를 조절할 수 있다
-
+## ch-07 Google Map
 
 ### 1. Google Map 플러그인 사용
    - mapType
    - circle
    - marker 
    - initialCameraPosition
+   - CameraPosition() 클래스 : 현재 보고 있는 카메라의 위치를 조절할 수 있다
 
 ### 2. Geolocator 플러그인 
    - getPositionStream() : 위치 기반으로 스트림 생성 
@@ -112,8 +110,7 @@
 
 -----
 
-## ch-09
-- Calendar
+## ch-09 Calendar 
 
 ### 1. SQLite 플러그인 사용
 
