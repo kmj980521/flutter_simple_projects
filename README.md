@@ -130,7 +130,8 @@
     - calendarStyle : 캘린더의 style. CalendarStyle() 클래스 사용
        - isTodayHighlighted : 오늘 날짜가 highlighted 해줄지
        - defaultDecoration : 날짜들 container의 Decoration을 BoxDecoration() 클래스로 설정. (주말 제외)
-    - 
+    - outsideDecoration : foucs된 달 이외의 요일들 설정. 만약 이외의 일을 선택해서 캘린더를 옮기고자 할 때는, selectedDay의 값을 focusedDay로 넣어주고 focus를 변경시킨다
+    - locale : 언어를 선택. 한국어는 'ko_KR',
 
 
 ### 4. GetIt 패키지 (Dependency Injection)
@@ -138,6 +139,23 @@
 ### 5. Spinkit 패키지 (로딩 위젯)
 
 ### 6. Intl 패키지 (다국어화)
+
+- 다국어 지원 패키지
+
+```dart
+
+import 'package:intl/date_symbol_data_local.dart';
+
+void main() async{
+
+  WidgetsFlutterBinding.ensureInitialized(); // Flutter Framework가 준비될 때까지 기다린다. -> runApp() 코드가 실행되기 전에 코드가 존재한다면 꼭 해줘야 함.
+
+  await initializeDateFormatting(); //언어 포멧팅 형식을 받을 때까지 await. 
+
+  runApp();
+
+
+```
 
 
 ### 7. TextField (글자 인풋받기)
