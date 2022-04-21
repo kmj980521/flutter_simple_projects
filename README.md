@@ -148,7 +148,9 @@ class Schedules extends Table{
 ```
 
 - 테이블 선언 
-``dart
+
+
+```dart
 
 part 'drift_database.g.dart'; 
 
