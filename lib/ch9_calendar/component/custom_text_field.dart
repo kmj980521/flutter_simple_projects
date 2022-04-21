@@ -6,8 +6,11 @@ class CustomTextField extends StatelessWidget {
   final bool isTime;
   // true - 시간
   final String label;
+  final String initialValue;
 
-  const CustomTextField({required this.label,required this.isTime, Key? key}) : super(key: key);
+  final FormFieldSetter<String> onSaved;
+
+  const CustomTextField({required this.label,required this.isTime, required this.onSaved, required this.initialValue, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,10 +31,34 @@ class CustomTextField extends StatelessWidget {
   }
 
   Widget renderTextField(){
-    return TextField(
+    return TextFormField(
+      onSaved: onSaved,
+      validator: (String? val){
+        if(val == null || val.isEmpty){
+          return '값을 입력해주세요';
+        }
+
+        if(isTime){
+          int time = int.parse(val);
+          if(time < 0 ){
+            return '0 이상의 숫자를 입력해주세요';
+          }
+          if(time > 24){
+            return '24 이하의 숫자를 입력해주세요';
+          }
+
+        }else{
+          if(val.length > 500){
+            return '500자 이하의 글자를 입력해주세요.';
+          }
+
+        }
+        return null;
+      },
       expands: isTime?false:true,
       cursorColor: Colors.grey,
       maxLines: isTime? 1: null,
+      initialValue: initialValue,
       keyboardType: isTime ? TextInputType.number: TextInputType.multiline,
       inputFormatters: isTime ? [
         FilteringTextInputFormatter.digitsOnly,
@@ -40,6 +67,7 @@ class CustomTextField extends StatelessWidget {
         border: InputBorder.none,
         filled: true,
         fillColor: Colors.grey[300],
+        suffixText: isTime? '시' : null,
       ),
     );
   }
