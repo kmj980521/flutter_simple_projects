@@ -351,7 +351,7 @@ return  Container(
 
 ### 추가 사항
 1. `flutter pub run build_runner build` : flutter code generation
-2. ** .. 키워드 ** : `number..toString()` -> toString() 되는 대상이 return. number 자체가 return 됨 
+2. **.. 키워드** : `number..toString()` -> toString() 되는 대상이 return. number 자체가 return 됨 
 3. Dismissible 위젯. 리스트에서 왼쪽 오른쪽으로 swipe 하는 액션을 만들어줄 수가 있다 
  
 
