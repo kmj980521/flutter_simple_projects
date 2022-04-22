@@ -1,0 +1,30 @@
+1. GridView.count
+   ㄴ 모든 위젯을 한 번에 모두 그려버린다
+
+
+2. GridView.builder
+   ㄴ gridDelegate : SliverGridDelegateWithFixedCrossAxisCount()
+      ㄴ GridView.count와 기능은 비슷하나 내릴 때 새로운 위젯을 그려 퍼포먼스를 개선
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

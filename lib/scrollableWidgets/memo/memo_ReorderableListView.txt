@@ -1,0 +1,46 @@
+1. 화면에서 순서를 바꿔서 보여주는 리스트
+
+2. ReorderableListView()
+   ㄴ 기본 constructor는 한 번에 모든 위젯을 다 그린다
+// case1)
+          // [red, orange, yellow]
+          // [0, 1, 2]
+          // red를 yellow 다음으로 옮기고 싶다.
+          // red: 0 oldIndex -> 3 newIndex
+          // [orange, yello, red]
+
+          // case2)
+          // [red, orange, yellow]
+          // [0, 1, 2]
+          // yellow를 맨 앞으로 옮기고 싶다.
+          // yellow : 2 oldIndex -> 0 new Index
+          // [yellow, red, orange]
+          if(oldIndex < newIndex){ // case 1)
+            newIndex -=1;
+          }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
