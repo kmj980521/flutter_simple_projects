@@ -116,6 +116,73 @@
 
 ### 2. Drift 패키지(SQLite ORM) 사용
 
+- 테이블 생성
+```dart
+
+class Schedules extends Table{
+  // 함수를 return하기 때문에 실행하기 위해 ()
+  // PRIMARY KEY
+  IntColumn get id => integer().autoIncrement()(); // 자동으로 값을 늘려 key로 사용하기 위함
+
+  // 내용
+  TextColumn get content =>text()();
+
+  // 일정 날짜
+  DateTimeColumn get date => dateTime()();
+
+  //시작 시간
+  IntColumn get startTime => integer()();
+
+  //끝 시간
+  IntColumn get endTime => integer()();
+
+  // Category Color Table ID
+  IntColumn get colorId => integer()();
+
+  // 생성날짜
+  DateTimeColumn get createdAt => dateTime().clientDefault(() => DateTime.now(),)();
+
+
+}
+
+```
+
+- 테이블 선언 
+
+
+```dart
+
+part 'drift_database.g.dart'; 
+
+//데코레이터 사용
+@DriftDatabase(
+  tables: [
+    Schedules, //테이블 타입만 넣어준다.
+    CategoryColors,
+  ],
+)
+
+class LocalDatabase extends _$LocalDatabse{
+  LocalDatabase() : super(_openConnection());
+}
+
+// DB 생성 코드 
+LazyDatabase _openConnection(){
+  return LazeDatabase(()async{
+    final dbFolder = await getApplicationDocumentsDirectory(); //앱 실행 폴더 위치
+    final file = File(
+      p.join(dbFolder.path, 'db.sqlite'),// 현재 애플리케이션에 배정된 경로 위치
+    );
+    return NativeDatabase(file);
+  });
+}
+
+```
+
+- part 선언 : 현재 파일의 private 값까지 불러올 수 있고, 이름에 .g.를 포함해 만든다 
+- DB에서 값을 읽어올 때 .get()이면 Future, .watch()면 Stream을 반환한다.
+- db에서 값을 읽어올 때 **Timezone 시차를 고려한다**
+
 ### 3. Table Calendar 패키지 사용
 - TableCalendar() 클래스
     - focusedDay : 어느 월을 보여줄 것인지
@@ -132,6 +199,10 @@
 
 
 ### 4. GetIt 패키지 (Dependency Injection)
+
+- `GetIt.I.registerSingleton<LocalDatabase>(database);` : LocalDatabase 타입의 database 인스턴스를 파일 어디에서든 가져올 수 있다. 
+` `future : GetIt.I<LocalDatabase>().getCategoryColors()` : LocalDatabase 타입의 인스턴스를 불러온다. 
+
 
 ### 5. Spinkit 패키지 (로딩 위젯)
 
@@ -184,13 +255,27 @@ return  Container(
 
 - `FocusScope.of(context).requestFocus(FocusNode());` : 특정 sheet를 GestureDectector로 감싸고, 이 코드를 작성하면 특정 Focus를 벗어날 때 자동으로 키보드를 닫을 수 있다
 - `inputFormatters: [ FilteringTextInputFormatter.digitsOnly, ],` : 키보드 입력도 숫자만 가능하게 한다 
+- decoration의 InputDecoration()의 suffixText: 접미사
            
-### 8. IntrinsicHeight 위젯
+### 8. TextFormField 위젯
+- TextField 위젯과 비슷
+- validator : null이 return 되면 에러가 없다. 에러가 있으면 에러를 String 값으로 리턴해준다.
+- 여러 개의 Form을 관리하기 위해선 특정 위젯 상위에다 Form 위젯으로 감싸주면 된다.  
+- `onSaved:` : 텍스트 필드를 감싸고 있는 상위에 있는 Form에서 sava라는 함수를 불렀을 때 모든 TextFormField에서 실행된다
+
+#### Form 위젯
+ - key : Form의 컨트롤러 
+ - `final GlobalKey<FormState> formKey = GlobalKey();` 
+ - `if(formKey.currentState!.validate()){} // 모든 테스트 필드에 에러가 없다면 true `
+ - `autovalidateMode:AutovalidateMode.always`   : 자동으로 validation 과정을 해준다 
+ - `formKey.currentState!.save();` : Form 하위 위젯에서 관리하는 데이터들을 한 번에 저장한다
+  
+### 9. IntrinsicHeight 위젯
 
 - Row를 IntrinsicHeight로 감싸고, crossAxisAlignment를 stretch 하면 Row 내에서 가장 높은 위젯이 차지하고 있는 높이 만큼 stretch를 할 수 있다.
 
 
-### 9. ListView 위젯
+### 10. ListView 위젯
 - itemCount : 그릴 아이템 수
 - itemBuilder : (context, index) { return 위젯 }
 - 봐야하는 인덱스까지 scrolling을 하고난 후에 다른 아이템을 보려고 할 때 위젯을 그린다. --> 메모리 관리에 유리하다
@@ -198,10 +283,15 @@ return  Container(
   - LiseView.separated() 위젯
     - 일반 ListView.builder와 같고, separatorBuilder : --> 한 위젯을 그리고나서 또 다른 위젯을 그릴 때. 즉, 위젯과 위젯 사이에 무언가를 그릴 때 사용
 
-### 10. showModalBottomSheet()
+### 11. showModalBottomSheet()
  - BottomeSheet를 보여준다
 
-### 11. Wrap 위젯
+### 12. Wrap 위젯
 - Row로 했을 때는 overflow가 날 수 있으니 자동으로 줄바꿈 mapping을 해준다
 - spacing : 각각 child 사이에 양 옆으로 간격을 준다 
 - runSpacing : 각각 child 위아래로 간격을 준다 
+
+### 추가 사항
+1. `flutter pub run build_runner build` : flutter code generation
+2. ** .. 키워드 ** : `number..toString()` -> toString() 되는 대상이 return. number 자체가 return 됨 
+3. Dismissible 위젯. 리스트에서 왼쪽 오른쪽으로 swipe 하는 액션을 만들어줄 수가 있다 
