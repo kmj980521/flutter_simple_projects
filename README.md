@@ -7,7 +7,7 @@
  
 </details>
 
-
+- [프로젝트 링크](https://github.com/kmj980521/flutter_simple_projects/tree/master/lib/ch1_splash_screen)
 
 
 -----
@@ -22,7 +22,7 @@
 </details>
 
  
-
+- [프로젝트 링크](https://github.com/kmj980521/flutter_simple_projects/tree/master/lib/ch2_webview)
 
 -----
 
@@ -37,7 +37,7 @@
  
 </details>
 
- 
+- [프로젝트 링크](https://github.com/kmj980521/flutter_simple_projects/tree/master/lib/ch3_picture_frame)
 
 -----
 
@@ -53,7 +53,7 @@
 </details>
 
 
-
+- [프로젝트 링크](https://github.com/kmj980521/flutter_simple_projects/tree/master/lib/ch4_U%26I)
 
 
 -----
@@ -72,7 +72,7 @@
 </details>
 
 
- 
+- [프로젝트 링크](https://github.com/kmj980521/flutter_simple_projects/tree/master/lib/ch5_random_number) 
 
 
 -----
@@ -97,7 +97,7 @@
 
 
  
-
+- [프로젝트 링크](https://github.com/kmj980521/flutter_simple_projects/tree/master/lib/ch6_video_player)
 
 
 -----
@@ -159,7 +159,7 @@
  
 </details>
 
-
+- [프로젝트 링크](https://github.com/kmj980521/flutter_simple_projects/tree/master/lib/ch7_googleMap)
 
 
 
@@ -358,7 +358,7 @@ return  Container(
 </details>
 
 
-
+- [프로젝트 링크](https://github.com/kmj980521/flutter_simple_projects/tree/master/lib/ch9_calendar)
 
 
  
@@ -369,5 +369,145 @@ return  Container(
 <details><summary> 내용 보기
 </summary>
 
+### 1. ListView 
+ - 크기가 무한히 늘어날 수 있다고 가정하기 때문에 상위 위젯에 Column을 두고 Expanded로 감싸서 사용한다. 
+ 
+### 2. SingleChildScrollView
+ - pysics : 스크롤 방식
+ - clipBehavior : 화면 잘림 정도 
+ - 한 번에 모든 위젯을 만들기 때문에 퍼포먼스적으로 좋지 않다.
+ 
+ 
+### 3. GridView
+ 
+ ##### 1. GridView.count
+ - 모든 위젯을 한 번에 모두 그린다.
+
+ ##### 2. GridView.builder
+ - gridDelegate : SliverGridDelegateWithFixedCrossAxisCount() : GridView.count와 기능은 비슷하나 내릴 때마다 새로운 위젯을 그려 퍼포먼스를 개선한다.
+ 
+### 4. CustomScrollView
+ 
+- 여러 개의 ScrollView를 사용하는데 따로 스크롤하는 것이 아닌, 한 번에 스크롤 하기 위해서 사용
+- slivers : 리스트 형태의 위젯. 이 파라미터 안에 들어가는 위젯들은 앞에 Sliver 가 붙는다
+ 
+ ##### 1. SliverList
+ - delegate : SliverChildListDelegate( render 코드 ) / 일반적인 ListView처럼 모든 위젯들이 한 번에 그려진다.
+ - SliverChildBuilderDelegate ( (context, index) {return ____} ) / 위젯을 새로 접근할 때 새로 그려주면서 퍼포먼스 개선
+ - childCount : 그릴 아이템 수 
+ 
+ ##### 2. SliverGrid
+ - 위와 유사 
+ 
+ ###### 3. SliverAppBar
+ - floating : 스크롤 했을 때 리스트의 중간에도 Appbar가 내려오게 할 수 있다. 기본 값은 false
+ - pinned : 스크롤을 해도 Appbar가 고정이 되어 있다. 기본 값은 false
+ - snap : floating을 true로 해놔야 함. 조금만 움직여도 Appbar가 등장
+ - stretch : physics를 사용해서 안드로이드에서 구현. iOS에서는 default로 땡겼을 때 튕기는 애니메이션이기 때문에, true로 해주면 Appbar가 따라온다. 맨 위에서 한계 이상으로 스크롤 했을 때 남는 공간을 차지
+ - expandedHeight : 늘어났을 때 최대 사이즈
+ - collapsedHeight : 최소 사이즈
+ - flexibleSpace: 유동적인 화면 구성 
+ 
+ ```dart
+ 
+ flexibleSpace: FlexibleSpaceBar(
+                            title: Text('FlexibleSpace'),
+                            background: Image.asset('asset/img/image_1.jpeg',
+                            fit: BoxFit.cover,),
+                          ),
+                       // background에 사진을 넣어줄 수도 있다
+ 
+ ```
+ 
+### 5. ReorderableListView
+- 화면에서 순서를 바꿔서 보여주는 리스트 
+
+2. ReorderableListView()
+   ㄴ 기본 constructor는 한 번에 모든 위젯을 다 그린다 
+ 
+- setState()시 주의할 점 
+ 
+ ```dart
+ 
+ 
+// case1)
+          // [red, orange, yellow]
+          // [0, 1, 2]
+          // red를 yellow 다음으로 옮기고 싶다.
+          // red: 0 oldIndex -> 3 newIndex
+          // [orange, yello, red]
+
+          // case2)
+          // [red, orange, yellow]
+          // [0, 1, 2]
+          // yellow를 맨 앞으로 옮기고 싶다.
+          // yellow : 2 oldIndex -> 0 new Index
+          // [yellow, red, orange]
+ 
+          if(oldIndex < newIndex){ // case 1)
+            newIndex -=1;
+          }
+ 
+
+ ```
+ 
+### 6. RefreshIndicator 
+- FaceBook에서 위로 땡겼을 때 나오는 Refresh 위젯
+ 
+- async await를 사용해 서버에서 새로운 데이터를 받아 새로운 화면을 그려낸다.                                  
+                                  
+ 
+### 7. SliverPersistentHeader
+- Sliver와 Sliver 사이에 Content를 넣어주기 위함
+
+```dart
+                                  
+class _SliverFixedHeaderDelegate extends SliverPersistentHeaderDelegate {
+
+  final Widget child;
+  final double maxHeight;
+  final double minHeight;
+
+  _SliverFixedHeaderDelegate({
+    required this.child,
+    required this.maxHeight,
+    required this.minHeight,
+  });
+
+
+  @override
+  Widget build(BuildContext context, double shrinkOffset,
+      bool overlapsContent) {
+    // TODO: implement build
+    return SizedBox.expand(
+      child: child,
+    );
+  }
+
+  @override
+  // 최대 높이
+  double get maxExtent => maxHeight;
+
+  @override
+  // 최소 높이
+  double get minExtent => minHeight;
+
+  // covariant - 상속된 클래스도 사용가능
+  // oldDelegate - build가 실행이 됐을 때 이전 Delegate
+  // this - 새로운 delegate
+  // shouldRebuild - 새로 build를 해야할지 말지 결정
+  // false - build 안함 / true - 빌드 다시 함
+  @override
+  bool shouldRebuild(_SliverFixedHeaderDelegate oldDelegate) {
+    return oldDelegate.minHeight != minHeight ||
+        oldDelegate.maxHeight != maxHeight ||
+        oldDelegate.child != child;
+  }
+
+}                                  
+                                  
+```
 
 </details>
+ 
+- [프로젝트 링크](https://github.com/kmj980521/flutter_simple_projects/tree/master/lib/scrollableWidgets/memo)
