@@ -104,7 +104,7 @@
 
 # ch-07 Google Map
 
-<details><summary>접고 펴는 기능
+<details><summary> 내용 보기
 </summary>
 
 ### 1. Google Map 플러그인 사용
@@ -167,7 +167,7 @@
 
 ## ch-09 Calendar 
 
-<details><summary>접고 펴는 기능
+<details><summary> 내용 보기
 </summary>
 
  ### 1. SQLite 플러그인 사용
