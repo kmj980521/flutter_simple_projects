@@ -421,9 +421,7 @@ return  Container(
  
 ### 5. ReorderableListView
 - 화면에서 순서를 바꿔서 보여주는 리스트 
-
-2. ReorderableListView()
-   ㄴ 기본 constructor는 한 번에 모든 위젯을 다 그린다 
+- 기본 constructor는 한 번에 모든 위젯을 다 그린다 
  
 - setState()시 주의할 점 
  
