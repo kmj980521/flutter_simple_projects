@@ -371,6 +371,7 @@ return  Container(
 
 ### 1. ListView 
  - 크기가 무한히 늘어날 수 있다고 가정하기 때문에 상위 위젯에 Column을 두고 Expanded로 감싸서 사용한다. 
+ - ListView를 center로 위치해도 shrinkWrap이 false면 가운데에 위치하지 않는다.
  
 ### 2. SingleChildScrollView
  - pysics : 스크롤 방식
